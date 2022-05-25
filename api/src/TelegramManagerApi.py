@@ -1,9 +1,11 @@
 from python_framework import ResourceManager
-import ModelAssociation
+from queue_manager_api import QueueManager
 
+import ModelAssociation
 
 import threading
 import telebot as tb
+import logging
 
 
 class TelegramManager:
@@ -13,13 +15,15 @@ class TelegramManager:
 
     def addResource(self, api, app):
         # import globals
-        # globals.getGlobalsInstance().getSettign(TelegramConfig.BOT_TOKEN)
+        # globals.getGlobalsInstance().getSettign(BotConfig.BOT_TOKEN)
         api.telegramManager = self
         self.api = api
-        from config import TelegramConfig
-        self.bot = tb.TeleBot(TelegramConfig.BOT_TOKEN, parse_mode=None) # You can set parse_mode by default. HTML or MARKDOWN
+        self.module = tb
+        from config import BotConfig
+        self.bot = tb.TeleBot(BotConfig.BOT_TOKEN, parse_mode=None) # You can set parse_mode by default. HTML or MARKDOWN
         self.botThread = threading.Thread(target = self.bot.infinity_polling)
         self.botThread.daemon = True
+        self.module.logger.setLevel(logging.DEBUG) ###- logging.CRITICAL
 
 
     def onHttpRequestCompletion(self, api, app):
@@ -40,5 +44,6 @@ class TelegramManager:
 
 
 app = ResourceManager.initialize(__name__, ModelAssociation.MODEL, managerList=[
-    TelegramManager()
+    TelegramManager(),
+    QueueManager()
 ])

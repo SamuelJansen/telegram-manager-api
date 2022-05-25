@@ -7,28 +7,30 @@ from python_framework import Service, ServiceMethod
 class TelegramService:
 
     @ServiceMethod()
-    def updateChampionshipTables(self, message):
-        self.emitter.telegram.aknowledgeByMessage(message, long=True)
-        teamDataList = self.service.aixSportsChampionship.updateAll()
-        self.emitter.telegram.successByMessage(
+    def getShift(self, message):
+        self.emitter.bot.aknowledgeByMessage(message, long=True)
+        self.emitter.bot.successByMessage(
             message,
-            text = self.mapper.aixSportsChampionship.fromResponseToText(teamDataList)
+            text = 'Here it is'
         )
 
 
     @ServiceMethod()
-    def updateChampionshipTable(self, message):
-        if self.service.aixSportsChampionship.teamCommandExists(message.text):
-            self.emitter.telegram.aknowledgeByMessage(message)
-            teamDataList = self.service.aixSportsChampionship.updateByteamCommand(message.text)
-            self.emitter.telegram.successByMessage(
-                message,
-                text = self.mapper.aixSportsChampionship.fromResponseToText(teamDataList)
-            )
-        else:
-            self.emitter.telegram.optionsByChatId(
-                message.chat.id,
-                'Escolha um time',
-                self.service.aixSportsChampionship.getTeamNameList(),
-                placeholder = 'Escolha o campeonato que deseja atualizar as tabelas'
-            )
+    def postShift(self, message):
+        self.emitter.bot.aknowledgeByMessage(message)
+        self.emitter.bot.optionsByChatId(
+            message.chat.id,
+            'Choose one',
+            ['A', 'B', 'C'],
+            placeholder = 'Choose one'
+        )
+        self.emitter.bot.successByMessage(
+            message,
+            text = 'Well done'
+        )
+
+
+    @ServiceMethod()
+    def acceptMessages(self, dtoList):
+        for dto in dtoList:
+            self.emitter.bot.optionsByChatId('1019762145', dto.get('message'), ['A', 'B', 'C'])

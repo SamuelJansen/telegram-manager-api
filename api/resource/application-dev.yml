@@ -5,8 +5,6 @@ api:
         dialect: ${DATABASE_DIALECT:sqlite}
         settings:
             check_same_thread: False
-    server:
-        port: 6090
 
 swagger:
     schemes: [https]

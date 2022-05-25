@@ -1,39 +1,25 @@
-import telebot as tb
-from python_helper import Constant as c
-from python_helper import ReflectionHelper, ObjectHelper, StringHelper
-from python_framework import Listener, ListenerMethod
-from enumeration.TelegramComands import TelegramComands
+from python_helper import log
+from python_framework import HttpStatus
+from queue_manager_api import MessageListener, MessageListenerMethod
+
+from ApiKeyContext import ApiKeyContext
+from config import QueueConfig
 
 
-@Listener(manager='telegramManager', muteLogs=False)
-class TelegramListener :
+@MessageListener(
+    timeout = QueueConfig.SEND_TELEGRAM_LISTENER_TIMEOUT
+    , muteLogs = False
+    , logRequest = True
+    , logResponse = True
+)
+class TelegramListener:
 
-    @ListenerMethod(
-        interceptor = 'telegramManager.bot.message_handler',
-        commands = ['oi']
+    @MessageListenerMethod(url = '/listener/messages',
+        requestClass = [[dict]],
+        apiKeyRequired=[ApiKeyContext.ADMIN, ApiKeyContext.USER, ApiKeyContext.API],
+        runInAThread = True
+        , logRequest = True
+        , logResponse = True
     )
-    def hi(self, message):
-        self.manager.bot.reply_to(message, 'Oi')
-
-
-    @ListenerMethod(
-        interceptor = 'telegramManager.bot.message_handler',
-        commands = [TelegramComands.UPDATE_CHAMPIONSHIP_TABLES]
-    )
-    def updateChampionshipTables(self, message):
-        self.service.telegram.updateChampionshipTables(message)
-
-
-    @ListenerMethod(
-        interceptor = 'telegramManager.bot.message_handler',
-        commands = [
-            TelegramComands.UPDATE_CHAMPIONSHIP_TABLE,
-            'campeonato_catarinense',
-            'campeonato_mineiro',
-            'campeonato_paranaense',
-            'campeonato_gaucho',
-            'paulista_serie_a3'
-        ]
-    )
-    def updateChampionshipTable(self, message):
-        self.service.telegram.updateChampionshipTable(message)
+    def acceptMessages(self, dtoList):
+        return self.service.telegram.acceptMessages(dtoList), HttpStatus.ACCEPTED

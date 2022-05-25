@@ -11,7 +11,8 @@ local-config.yml
 *-swagger.json
 dummydata/
 secrects.txt
-example.py
+*example.*
+
 
 
 # C extensions
