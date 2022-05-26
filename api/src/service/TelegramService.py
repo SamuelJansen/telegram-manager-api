@@ -34,3 +34,8 @@ class TelegramService:
     def acceptMessages(self, dtoList):
         for dto in dtoList:
             self.emitter.bot.optionsByChatId('1019762145', dto.get('message'), ['A', 'B', 'C'])
+
+
+    @ServiceMethod()
+    def uodateCommands(self, message):
+        self.emitter.bot.updateCommands(message)

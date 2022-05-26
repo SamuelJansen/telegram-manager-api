@@ -1,8 +1,9 @@
 from python_helper import Constant as c
 from python_helper import ReflectionHelper, ObjectHelper, StringHelper, RandomHelper
 from python_framework import Emitter, EmitterMethod
-from enumeration.BotComands import BotComands
 
+from enumeration.BotComands import BotComands
+from enumeration.BotComands import BotComands
 
 
 AKNOWLEDGE = [
@@ -19,11 +20,11 @@ COMPLETE = [
 ]
 
 
-@Emitter(manager='telegramManager', muteLogs=False)
+@Emitter(manager=TelegramConstant.BOT_MANAGER, muteLogs=False)
 class BotEmitter :
 
     @EmitterMethod()
-    def updateCommands(self):
+    def updateCommands(self, message):
         self.manager.bot.delete_my_commands(scope=None, language_code=None)
         self.manager.bot.set_my_commands(
             commands=[
