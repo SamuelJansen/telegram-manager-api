@@ -36,17 +36,12 @@ class ShiftEmitter:
 
     @MessageEmitterMethod(
         queueKey = ShiftQueueConfig.HIT_SHIFT_NOW_QUEUE_KEY
-        # requestHeadersClass=[dict],
-        # requestClass=[dict]
-        # responseClass=[[dict]]
         , logRequest = True
         , logResponse = True
     )
     def hitShiftNow(self):
         return self.emit(
-            # headers = headers,
             messageHeaders = {
                 JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME: f'Bearer {ShiftClientConfig.API_KEY}'
-            },
-            body = dto
+            }
         )
