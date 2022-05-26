@@ -20,10 +20,16 @@ class BotListener :
 
     @ListenerMethod(
         interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
-        commands = [BotComands.POST_SHIFT]
+        commands = [
+            BotComands.HIT_SHIFT,
+            BotComands.HIT_FIRST_SHIFT_BEGIN,
+            BotComands.HIT_FIRST_SHIFT_END,
+            BotComands.HIT_SECOND_SHIFT_BEGIN,
+            BotComands.HIT_SECOND_SHIFT_END
+        ]
     )
-    def updateChampionshipTables(self, message):
-        self.service.telegram.postShift(message)
+    def hitShift(self, message):
+        self.service.telegram.hitShift(message)
 
 
     @ListenerMethod(
@@ -32,7 +38,7 @@ class BotListener :
             BotComands.GET_SHIFT
         ]
     )
-    def updateChampionshipTable(self, message):
+    def getShift(self, message):
         self.service.telegram.getShift(message)
 
 
@@ -42,5 +48,5 @@ class BotListener :
             BotComands.UPDATE_COMMANDS
         ]
     )
-    def updateChampionshipTable(self, message):
+    def updateCommands(self, message):
         self.service.telegram.updateCommands(message)

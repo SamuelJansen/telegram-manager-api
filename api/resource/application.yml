@@ -34,6 +34,7 @@ api:
 
 telegram:
     bot-token: ${TELEGRAM_BOT_TOKEN:test}
+    chat-id: ${TELEGRAM_CHAT_ID}
 
 queue-manager-api:
     base-url: ${QUEUE_MANAGER_API_HOST}/queue-manager-api
@@ -48,6 +49,14 @@ queue-manager-api:
         queue-key: ${SEND_TELEGRAM_QUEUE_KEY}
         emitter:
             timeout: 2
+    hit-shift:
+        queue-key: ${HIT_SHIFT_QUEUE_KEY}
+        emitter:
+            timeout: 2
+
+shift-manager-api:
+    api-key: ${SHIFT_MANAGER_API_API_KEY}
+
 
 swagger:
     # schemes: [${api.server.scheme}] ###- bug
