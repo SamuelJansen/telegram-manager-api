@@ -2,7 +2,7 @@ from python_helper import Constant as c
 from python_helper import ReflectionHelper, ObjectHelper, StringHelper, RandomHelper
 from python_framework import Emitter, EmitterMethod
 
-from enumeration.BotComands import BotComands
+from constant import TelegramConstant
 from enumeration.BotComands import BotComands
 
 
