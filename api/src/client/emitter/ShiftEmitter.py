@@ -35,7 +35,7 @@ class ShiftEmitter:
         )
 
     @MessageEmitterMethod(
-        queueKey = ShiftQueueConfig.HIT_SHIFT_NOW_QUEUE_KEY,
+        queueKey = ShiftQueueConfig.HIT_SHIFT_NOW_QUEUE_KEY
         # requestHeadersClass=[dict],
         # requestClass=[dict]
         # responseClass=[[dict]]
