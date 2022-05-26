@@ -29,6 +29,11 @@ class BotComandsEnumeration :
         description = 'Hit second shift end',
         momment = ShiftMomment.SECOND_SHIFT_END
     )
+    HIT_SHIFT_NOW = EnumItem(
+        command = 'hit_shift_now',
+        description = 'Hit shift now',
+        momment = ShiftMomment.NOW
+    )
     GET_SHIFT = EnumItem(
         command = 'get_shift',
         description = 'Get shif status'

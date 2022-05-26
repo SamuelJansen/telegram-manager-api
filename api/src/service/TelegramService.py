@@ -33,6 +33,8 @@ class TelegramService:
                         BotComands.HIT_SECOND_SHIFT_END
                     ]
                 ])
+            elif BotComands.HIT_SHIFT_NOW == self.mapToEnum(message.text):
+                self.emitter.shift.hitShiftNow()
             else:
                 self.emitter.shift.hitShift({'momment': self.mapToEnum(message.text).momment})
         else:

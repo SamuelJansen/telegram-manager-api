@@ -53,6 +53,10 @@ queue-manager-api:
         queue-key: ${HIT_SHIFT_QUEUE_KEY}
         emitter:
             timeout: 2
+    hit-shift-now:
+        queue-key: ${HIT_SHIFT_NOW_QUEUE_KEY}
+        emitter:
+            timeout: 2
 
 shift-manager-api:
     api-key: ${SHIFT_MANAGER_API_API_KEY}
