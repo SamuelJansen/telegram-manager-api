@@ -30,7 +30,7 @@ class BotEmitter :
             commands=[
                 self.manager.module.types.BotCommand(command, command.description) for command in [
                     *ReflectionHelper.getAttributeDataDictionary(BotComands).values()
-                ] if not ReflectionHelper.isNotFunction(command)
+                ] if isinstance(command, str)
             ],
             # scope=telebot.types.BotCommandScopeChat(12345678)  # use for personal command for users
             # scope=telebot.types.BotCommandScopeAllPrivateChats()  # use for all private chats

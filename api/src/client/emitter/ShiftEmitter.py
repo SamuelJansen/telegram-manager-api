@@ -12,8 +12,8 @@ from config import ShiftQueueConfig, ShiftClientConfig
         JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME: f'Bearer {ShiftQueueConfig.HIT_SHIFT_EMITTER_API_KEY}'
     }
     , muteLogs = False
-    # , logRequest = True
-    # , logResponse = True
+    , logRequest = True
+    , logResponse = True
 )
 class ShiftEmitter:
 
