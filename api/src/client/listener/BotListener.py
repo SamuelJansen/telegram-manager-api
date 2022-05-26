@@ -45,7 +45,7 @@ class BotListener :
     @ListenerMethod(
         interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
         commands = [
-            BotComands.UPDATE_COMMANDS
+            BotComands.COMMANDS
         ]
     )
     def updateCommands(self, message):

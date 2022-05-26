@@ -35,8 +35,8 @@ class BotComandsEnumeration :
     )
 
 
-    UPDATE_COMMANDS = EnumItem(
-        command = 'refresh_commands',
+    COMMANDS = EnumItem(
+        command = 'commands',
         description = 'Refresh commands'
     )
 
