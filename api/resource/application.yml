@@ -1,6 +1,7 @@
 print-status: False
 api:
     name: TelegramManagerApi
+    version: 0.0.2
     extension: yml
     dependency:
         update: False
@@ -59,7 +60,9 @@ queue-manager-api:
             timeout: 2
 
 shift-manager-api:
+    base-url: ${SHIFT_MANAGER_API_HOST}/shift-manager-api
     api-key: ${SHIFT_MANAGER_API_API_KEY}
+    timeout: 6
 
 
 swagger:
@@ -68,7 +71,7 @@ swagger:
     info:
         # title: ${api.name} ###- commented to make use of auto title and auto description
         # description: Shift Api
-        version: 0.0.1
+        version: ${api.version}
         terms-of-service: http://swagger.io/terms/
         contact:
             name: Samuel Jansen

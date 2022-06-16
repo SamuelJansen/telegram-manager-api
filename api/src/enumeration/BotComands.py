@@ -36,12 +36,16 @@ class BotComandsEnumeration :
     )
     GET_SHIFT = EnumItem(
         command = 'get_shift',
-        description = 'Get shif status'
+        description = 'Get today shif'
     )
 
 
-    COMMANDS = EnumItem(
-        command = 'commands',
+    LIST_COMMANDS = EnumItem(
+        command = 'list_commands',
+        description = 'List commands'
+    )
+    REFRESH_COMMANDS = EnumItem(
+        command = 'refresh_commands',
         description = 'Refresh commands'
     )
 

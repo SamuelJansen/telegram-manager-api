@@ -1,6 +1,6 @@
 from python_helper import Constant as c
 from python_helper import ReflectionHelper, ObjectHelper, StringHelper, RandomHelper
-from python_framework import Emitter, EmitterMethod
+from python_framework import Emitter, EmitterMethod, EnumItem
 
 from constant import TelegramConstant
 from enumeration.BotComands import BotComands
@@ -8,7 +8,9 @@ from enumeration.BotComands import BotComands
 
 AKNOWLEDGE = [
     'On it',
-    'Ok'
+    'Ok',
+    'In a moment',
+    'One momment'
 ]
 
 LONG_AKNOWLEDGE = [
@@ -16,24 +18,24 @@ LONG_AKNOWLEDGE = [
 ]
 
 COMPLETE = [
-    '''It's done'''
+    '''It's done''',
+    'Done'
 ]
 
 
 @Emitter(manager=TelegramConstant.BOT_MANAGER, muteLogs=False)
 class BotEmitter :
 
-    @EmitterMethod()
-    def updateCommands(self, message):
+    @EmitterMethod(requestClass=[[EnumItem]])
+    def updateCommands(self, commandList):
         self.manager.bot.delete_my_commands(scope=None, language_code=None)
         self.manager.bot.set_my_commands(
-            commands=[
-                self.manager.module.types.BotCommand(command, command.description) for command in [
-                    *ReflectionHelper.getAttributeDataDictionary(BotComands).values()
-                ] if isinstance(command, str)
-            ],
+            commands = [
+                self.manager.module.types.BotCommand(command, command.description)
+                for command in commandList
             # scope=telebot.types.BotCommandScopeChat(12345678)  # use for personal command for users
             # scope=telebot.types.BotCommandScopeAllPrivateChats()  # use for all private chats
+            ]
         )
 
 
@@ -43,13 +45,23 @@ class BotEmitter :
 
 
     @EmitterMethod()
+    def aknowledgeByChatId(self, chatId, long=False):
+        self.manager.bot.send_message(chatId, RandomHelper.sample(LONG_AKNOWLEDGE if long else AKNOWLEDGE))
+
+
+    @EmitterMethod()
     def successByMessage(self, message, text):
         self.manager.bot.reply_to(message, f'{RandomHelper.sample(COMPLETE)}{f"{2*c.NEW_LINE}{text}" if ObjectHelper.isNotEmpty(text) else c.BLANK}')
 
 
     @EmitterMethod()
-    def sendTextMessage(self, message, text):
-        self.manager.bot.reply_to(message, f'{RandomHelper.sample(COMPLETE)}{f"{2*c.NEW_LINE}{text}" if ObjectHelper.isNotEmpty(text) else c.BLANK}')
+    def sendTextByMessage(self, message, text):
+        self.manager.bot.reply_to(message, text)
+
+
+    @EmitterMethod()
+    def sendTextByChatId(self, chatId, text):
+        self.manager.bot.send_message(chatId, text)
 
 
     @EmitterMethod()

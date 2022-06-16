@@ -6,6 +6,7 @@ import ModelAssociation
 import threading
 import telebot as tb
 import logging
+from python_helper import log, ReflectionHelper
 
 
 class TelegramManager:
@@ -13,10 +14,14 @@ class TelegramManager:
     bot = None
     botThread = None
 
+    def __init__(self):
+        log.debug(self.__init__, f'{ReflectionHelper.getName(TelegramManager)} created')
+
+
     def addResource(self, api, app):
         # import globals
         # globals.getGlobalsInstance().getSettign(BotConfig.BOT_TOKEN)
-        api.telegramManager = self
+        api.resource.manager.telegram = self
         self.api = api
         self.module = tb
         from config import BotConfig
@@ -24,6 +29,7 @@ class TelegramManager:
         self.botThread = threading.Thread(target = self.bot.infinity_polling)
         self.botThread.daemon = True
         self.module.logger.setLevel(logging.DEBUG) ###- logging.CRITICAL
+        log.status(self.addResource, 'Telegram manager resource added successfuly')
 
 
     def onHttpRequestCompletion(self, api, app):
@@ -31,16 +37,18 @@ class TelegramManager:
 
 
     def onRun(self, api, app):
-        # api.telegramManager.botThread.start()
+        # api.resource.manager.telegram.botThread.start()
         ...
 
 
     def initialize(self, api, app):
-        api.telegramManager.botThread.start()
+        api.resource.manager.telegram.botThread.start()
+        log.success(self.initialize, f'{ReflectionHelper.getClassName(self)} is running')
 
 
     def onShutdown(self, api, app):
-        api.telegramManager.botThread.join(timeout=0)
+        api.resource.manager.telegram.botThread.join(timeout=0)
+        log.success(self.onShutdown, f'{ReflectionHelper.getClassName(self)} is successfuly closed')
 
 
 app = ResourceManager.initialize(__name__, ModelAssociation.MODEL, managerList=[

@@ -1,2 +1,4 @@
-python-framework>=0.3.11
+python-framework>=0.3.91
+queue-manager-api<1.0.0,>=0.1.34
+notification-manager-api<1.0.0,>=0.0.13
 pyTelegramBotAPI==4.4.0

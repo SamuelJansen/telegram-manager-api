@@ -21,12 +21,22 @@ class BotListener :
     @ListenerMethod(
         interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
         commands = [
+            BotComands.LIST_COMMANDS
+        ]
+    )
+    def listCommands(self, message):
+        self.service.telegram.listCommands(message)
+
+
+    @ListenerMethod(
+        interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
+        commands = [
             BotComands.HIT_SHIFT,
             BotComands.HIT_FIRST_SHIFT_BEGIN,
             BotComands.HIT_FIRST_SHIFT_END,
             BotComands.HIT_SECOND_SHIFT_BEGIN,
             BotComands.HIT_SECOND_SHIFT_END,
-            BotComands.HIT_SHIFT_NOW,
+            BotComands.HIT_SHIFT_NOW
         ]
     )
     def hitShift(self, message):
@@ -46,7 +56,7 @@ class BotListener :
     @ListenerMethod(
         interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
         commands = [
-            BotComands.COMMANDS
+            BotComands.REFRESH_COMMANDS
         ]
     )
     def updateCommands(self, message):
