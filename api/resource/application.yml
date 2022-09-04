@@ -65,7 +65,7 @@ shift-manager-api:
     timeout: 6
 
 
-shift-manager-api:
+the-news-api:
     base-url: ${THE_NEWS_API_HOST}/the-news
     api-key: ${THE_NEWS_API_API_KEY}
     timeout: 20
