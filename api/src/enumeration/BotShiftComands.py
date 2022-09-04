@@ -38,8 +38,8 @@ class BotShiftComandsEnumeration:
         description = 'Hit shift now',
         momment = ShiftMomment.NOW
     )
-    GET_TODAYS_SHIFT = EnumItem(
-        command = 'get_todays_shift',
+    GET_TODAY_SHIFT = EnumItem(
+        command = 'get_today_shift',
         description = 'Get today shif'
     )
 

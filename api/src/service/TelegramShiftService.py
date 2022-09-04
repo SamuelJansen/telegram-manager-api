@@ -12,14 +12,14 @@ class TelegramShiftService:
     @ServiceMethod()
     def presentCommands(self, message):
         if BotConfig.CHAT_ID == message.chat.id:
-            self.emitter.bot.optionsByChatId(str(message.chat.id), 'Work shift options:', [
+            self.emitter.bot.optionsByChatId(str(message.chat.id), 'Work shift commands:', [
                 f'{c.SLASH}{command}' for command in [
                     BotShiftComands.HIT_SHIFT,
-                    BotShiftComands.GET_TODAYS_SHIFT
+                    BotShiftComands.GET_TODAY_SHIFT
                 ]
             ])
         else:
-            log.warning(self.presentCommands, f'The {message.chat.id} chat id is trying to interact with work shift. But this method only responds to {BotConfig.CHAT_ID}')
+            log.warning(self.presentCommands, f'The {message.chat.id} chat id is trying to list work shift commands. But this method only responds to {BotConfig.CHAT_ID}')
 
 
     @ServiceMethod()
@@ -38,7 +38,7 @@ class TelegramShiftService:
             )
 
         else:
-            log.warning(self.hitShift, f'The {message.chat.id} chat id is trying to hit shift. But this method only responds to {BotConfig.CHAT_ID}')
+            log.warning(self.hitShift, f'''The {message.chat.id} chat id is trying to get today's shift report. But this method only responds to {BotConfig.CHAT_ID}''')
 
 
     @ServiceMethod()
@@ -58,16 +58,16 @@ class TelegramShiftService:
 
 
     @ServiceMethod()
-    def hitShiftNow(self, message):
-        if BotConfig.CHAT_ID == message.chat.id:
-            self.emitter.shift.hitShiftNow()
-        else:
-            log.warning(self.hitShiftNow, f'The {message.chat.id} chat id is trying to hit shift now. But this method only responds to {BotConfig.CHAT_ID}')
-
-
-    @ServiceMethod()
     def hitShift(self, message):
         if BotConfig.CHAT_ID == message.chat.id:
             self.emitter.shift.hitShift({'momment': self.service.telegram.mapToEnum(BotShiftComands, message.text).momment})
         else:
             log.warning(self.hitShift, f'The {message.chat.id} chat id is trying to hit shift. But this method only responds to {BotConfig.CHAT_ID}')
+
+
+    @ServiceMethod()
+    def hitShiftNow(self, message):
+        if BotConfig.CHAT_ID == message.chat.id:
+            self.emitter.shift.hitShiftNow()
+        else:
+            log.warning(self.hitShiftNow, f'The {message.chat.id} chat id is trying to hit shift now. But this method only responds to {BotConfig.CHAT_ID}')
