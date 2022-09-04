@@ -35,8 +35,7 @@ class BotShiftListener:
             BotShiftComands.HIT_FIRST_SHIFT_BEGIN,
             BotShiftComands.HIT_FIRST_SHIFT_END,
             BotShiftComands.HIT_SECOND_SHIFT_BEGIN,
-            BotShiftComands.HIT_SECOND_SHIFT_END,
-            BotShiftComands.HIT_SHIFT_NOW
+            BotShiftComands.HIT_SECOND_SHIFT_END
         ]
     )
     def hitShift(self, message):
