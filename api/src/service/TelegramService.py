@@ -54,7 +54,6 @@ class TelegramService:
     def createTodayNews(self, message):
         if BotConfig.CHAT_ID == message.chat.id:
             self.emitter.bot.aknowledgeByMessage(message)
-            if BotComands.CREATE_TODAY_NEWS == self.mapToEnum(message.text):
             self.client.theNews.createTodayNews()
         else:
             log.warning(self.hitShift, f'The {message.chat.id} chat id is trying to interact with the-news. But this method only responds to {BotConfig.CHAT_ID}')
