@@ -18,9 +18,9 @@ class TelegramService:
             self.emitter.bot.optionsByChatId(str(BotConfig.CHAT_ID), 'Tap a command to call it', [
                 f'{c.SLASH}{command}'
                 for command in [
-                    *ReflectionHelper.getAttributeDataDictionary(BotComands).values(),
                     *ReflectionHelper.getAttributeDataDictionary(BotShiftComands).values(),
-                    *ReflectionHelper.getAttributeDataDictionary(BotTheNewsComands).values()
+                    *ReflectionHelper.getAttributeDataDictionary(BotTheNewsComands).values(),
+                    *ReflectionHelper.getAttributeDataDictionary(BotComands).values()
                 ]
                 if isinstance(command, str)
             ])
