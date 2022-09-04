@@ -50,20 +50,14 @@ class TelegramService:
         else:
             log.warning(self.hitShift, f'The {message.chat.id} chat id is trying to hit shift. But this method only responds to {BotConfig.CHAT_ID}')
 
+
     @ServiceMethod()
     def createTodayNews(self, message):
         if BotConfig.CHAT_ID == message.chat.id:
             self.emitter.bot.aknowledgeByMessage(message)
             self.client.theNews.createTodayNews()
         else:
-            log.warning(self.hitShift, f'The {message.chat.id} chat id is trying to interact with the-news. But this method only responds to {BotConfig.CHAT_ID}')
-
-
-    @ServiceMethod()
-    def acceptMessages(self, dtoList):
-        # self.emitter.bot.aknowledgeByChatId(str(BotConfig.CHAT_ID))
-        for dto in dtoList:
-            self.emitter.bot.sendTextByChatId(str(BotConfig.CHAT_ID), dto.get('message'))
+            log.warning(self.createTodayNews, f'The {message.chat.id} chat id is trying to interact with the-news. But this method only responds to {BotConfig.CHAT_ID}')
 
 
     @ServiceMethod()
@@ -84,8 +78,16 @@ class TelegramService:
         self.emitter.bot.updateCommands([
             BotComands.GET_SHIFT,
             BotComands.HIT_SHIFT,
+            BotComands.CREATE_TODAY_NEWS,
             BotComands.LIST_COMMANDS
         ])
+
+
+    @ServiceMethod()
+    def acceptMessages(self, dtoList):
+        # self.emitter.bot.aknowledgeByChatId(str(BotConfig.CHAT_ID))
+        for dto in dtoList:
+            self.emitter.bot.sendTextByChatId(str(BotConfig.CHAT_ID), dto.get('message'))
 
 
     @ServiceMethod(requestClass=[str])
