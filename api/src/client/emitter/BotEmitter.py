@@ -3,7 +3,6 @@ from python_helper import ReflectionHelper, ObjectHelper, StringHelper, RandomHe
 from python_framework import Emitter, EmitterMethod, EnumItem
 
 from constant import TelegramConstant
-from enumeration.BotComands import BotComands
 
 
 AKNOWLEDGE = [
@@ -33,9 +32,9 @@ class BotEmitter :
             commands = [
                 self.manager.module.types.BotCommand(command, command.description)
                 for command in commandList
+            ]
             # scope=telebot.types.BotCommandScopeChat(12345678)  # use for personal command for users
             # scope=telebot.types.BotCommandScopeAllPrivateChats()  # use for all private chats
-            ]
         )
 
 

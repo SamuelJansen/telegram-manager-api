@@ -7,7 +7,7 @@ from enumeration.BotComands import BotComands
 
 
 @Listener(manager=TelegramConstant.BOT_MANAGER, muteLogs=False)
-class BotListener :
+class BotListener:
 
     @ListenerMethod(
         interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
@@ -18,39 +18,39 @@ class BotListener :
         self.manager.bot.reply_to(message, 'Hi')
 
 
-    @ListenerMethod(
-        interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
-        commands = [
-            BotComands.HIT_SHIFT,
-            BotComands.HIT_FIRST_SHIFT_BEGIN,
-            BotComands.HIT_FIRST_SHIFT_END,
-            BotComands.HIT_SECOND_SHIFT_BEGIN,
-            BotComands.HIT_SECOND_SHIFT_END,
-            BotComands.HIT_SHIFT_NOW
-        ]
-    )
-    def hitShift(self, message):
-        self.service.telegram.hitShift(message)
+    # @ListenerMethod(
+    #     interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
+    #     commands = [
+    #         BotComands.HIT_SHIFT,
+    #         BotComands.HIT_FIRST_SHIFT_BEGIN,
+    #         BotComands.HIT_FIRST_SHIFT_END,
+    #         BotComands.HIT_SECOND_SHIFT_BEGIN,
+    #         BotComands.HIT_SECOND_SHIFT_END,
+    #         BotComands.HIT_SHIFT_NOW
+    #     ]
+    # )
+    # def hitShift(self, message):
+    #     self.service.telegram.hitShift(message)
+    #
+    #
+    # @ListenerMethod(
+    #     interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
+    #     commands = [
+    #         BotComands.GET_TODAYS_SHIFT
+    #     ]
+    # )
+    # def getShift(self, message):
+    #     self.service.telegram.getShift(message)
 
 
-    @ListenerMethod(
-        interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
-        commands = [
-            BotComands.GET_SHIFT
-        ]
-    )
-    def getShift(self, message):
-        self.service.telegram.getShift(message)
-
-
-    @ListenerMethod(
-        interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
-        commands = [
-            BotComands.CREATE_TODAY_NEWS
-        ]
-    )
-    def createTodayNews(self, message):
-        self.service.telegram.createTodayNews(message)
+    # @ListenerMethod(
+    #     interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
+    #     commands = [
+    #         BotComands.CREATE_TODAY_NEWS
+    #     ]
+    # )
+    # def createTodayNews(self, message):
+    #     self.service.telegram.createTodayNews(message)
 
 
     @ListenerMethod(
@@ -66,7 +66,7 @@ class BotListener :
     @ListenerMethod(
         interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
         commands = [
-            BotComands.REFRESH_COMMANDS
+            BotComands.UPDATE_COMMANDS
         ]
     )
     def updateCommands(self, message):

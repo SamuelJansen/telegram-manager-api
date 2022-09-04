@@ -1,57 +1,17 @@
 from python_framework import Enum, EnumItem
 
-from enumeration.ShiftMomment import ShiftMomment
-
 
 @Enum(associateReturnsTo='command')
-class BotComandsEnumeration :
-    HIT_SHIFT = EnumItem(
-        command = 'hit_shift',
-        description = 'Hit shift'
-    )
-    HIT_FIRST_SHIFT_BEGIN = EnumItem(
-        command = 'hit_first_shift_begin',
-        description = 'Hit first shift begin',
-        momment = ShiftMomment.FIRST_SHIFT_BEGIN
-    )
-    HIT_FIRST_SHIFT_END = EnumItem(
-        command = 'hit_first_shift_end',
-        description = 'Hit first shift end',
-        momment = ShiftMomment.FIRST_SHIFT_END
-    )
-    HIT_SECOND_SHIFT_BEGIN = EnumItem(
-        command = 'hit_second_shift_begin',
-        description = 'Hit second shift begin',
-        momment = ShiftMomment.SECOND_SHIFT_BEGIN
-    )
-    HIT_SECOND_SHIFT_END = EnumItem(
-        command = 'hit_second_shift_end',
-        description = 'Hit second shift end',
-        momment = ShiftMomment.SECOND_SHIFT_END
-    )
-    HIT_SHIFT_NOW = EnumItem(
-        command = 'hit_shift_now',
-        description = 'Hit shift now',
-        momment = ShiftMomment.NOW
-    )
-    GET_SHIFT = EnumItem(
-        command = 'get_shift',
-        description = 'Get today shif'
-    )
-
-    CREATE_TODAY_NEWS = EnumItem(
-        command = 'create_today_news',
-        description = 'Create today news'
-    )
+class BotComandsEnumeration:
 
 
     LIST_COMMANDS = EnumItem(
         command = 'list_commands',
         description = 'List commands'
     )
-    REFRESH_COMMANDS = EnumItem(
-        command = 'refresh_commands',
-        description = 'Refresh commands'
+    UPDATE_COMMANDS = EnumItem(
+        command = 'update_commands',
+        description = 'Update commands'
     )
 
 BotComands = BotComandsEnumeration()
