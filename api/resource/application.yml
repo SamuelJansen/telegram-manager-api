@@ -65,6 +65,11 @@ shift-manager-api:
     timeout: 6
 
 
+shift-manager-api:
+    base-url: ${THE_NEWS_API_HOST}/the-news
+    api-key: ${THE_NEWS_API_API_KEY}
+    timeout: 20
+
 swagger:
     # schemes: [${api.server.scheme}] ###- bug
     # host: ${SWAGGER_HOST:${api.server.host}}:${api.server.port} ###- bug

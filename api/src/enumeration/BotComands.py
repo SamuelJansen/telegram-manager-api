@@ -39,6 +39,11 @@ class BotComandsEnumeration :
         description = 'Get today shif'
     )
 
+    CREATE_TODAY_NEWS = EnumItem(
+        command = 'create_today_news',
+        description = 'Create today news'
+    )
+
 
     LIST_COMMANDS = EnumItem(
         command = 'list_commands',

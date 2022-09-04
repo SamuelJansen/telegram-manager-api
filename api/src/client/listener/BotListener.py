@@ -21,16 +21,6 @@ class BotListener :
     @ListenerMethod(
         interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
         commands = [
-            BotComands.LIST_COMMANDS
-        ]
-    )
-    def listCommands(self, message):
-        self.service.telegram.listCommands(message)
-
-
-    @ListenerMethod(
-        interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
-        commands = [
             BotComands.HIT_SHIFT,
             BotComands.HIT_FIRST_SHIFT_BEGIN,
             BotComands.HIT_FIRST_SHIFT_END,
@@ -51,6 +41,26 @@ class BotListener :
     )
     def getShift(self, message):
         self.service.telegram.getShift(message)
+
+
+    @ListenerMethod(
+        interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
+        commands = [
+            BotComands.CREATE_TODAY_NEWS
+        ]
+    )
+    def createTodayNews(self, message):
+        self.service.telegram.createTodayNews(message)
+
+
+    @ListenerMethod(
+        interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
+        commands = [
+            BotComands.LIST_COMMANDS
+        ]
+    )
+    def listCommands(self, message):
+        self.service.telegram.listCommands(message)
 
 
     @ListenerMethod(
