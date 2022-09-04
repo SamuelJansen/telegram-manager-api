@@ -17,7 +17,7 @@ class TheNewsClient:
 
     @HttpClientMethod(
         url = '/the-news/today',
-        responseClass=[[dict]]
+        responseClass=[dict]
         , logRequest = True
         , logResponse = True
     )
