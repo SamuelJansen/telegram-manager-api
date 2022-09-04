@@ -16,7 +16,7 @@ from config import TheNewsClientConfig
 class TheNewsClient:
 
     @HttpClientMethod(
-        url = '/today',
+        url = '/the-news/today',
         responseClass=[[dict]]
         , logRequest = True
         , logResponse = True
