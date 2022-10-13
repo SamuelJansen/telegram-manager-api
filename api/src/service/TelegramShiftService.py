@@ -6,6 +6,16 @@ from enumeration.BotShiftComands import BotShiftComands
 from config import BotConfig
 
 
+SHIFT_DICTIONARY = {
+    0: 'First shift begin',
+    1: 'First shift end',
+    2: 'Second shift begin',
+    3: 'Second shift end',
+    4: 'Third shift begin',
+    5: 'Third shift end'
+}
+
+
 @Service()
 class TelegramShiftService:
 
@@ -25,10 +35,24 @@ class TelegramShiftService:
     @ServiceMethod()
     def getTodaysShift(self, message):
         if BotConfig.CHAT_ID == message.chat.id:
+            todayShift = {}
+
+            try:
+                todayShift = self.client.shift.getTodayShift()
+            except Exception as exception:
+                log.failure(self.getTodaysShift, '''Not possible to get today's shift''', exception=exception, muteStackTrace=True)
+                self.emitter.bot.errorByMessage(
+                    message,
+                    text = '''Not possible to get today's shift. Shift service is unavailable'''
+                )
+                return
             text = StringHelper.join(
                 [
-                    responseDto.get('hitAt')
-                    for responseDto in self.client.shift.getTodayShift()
+                    f'{SHIFT_DICTIONARY.get(index)}: {data}'
+                    for index, data in [
+                        responseDto.get('hitAt', 'not informed').split()[-1].split('.')[0]
+                        for responseDto in todayShift
+                    ]
                 ],
                 character = f'{c.COMA}{c.NEW_LINE}'
             )
@@ -36,6 +60,8 @@ class TelegramShiftService:
                 message,
                 text = text if ObjectHelper.isNeitherNoneNorBlank(text) else '''Shift still not hit today'''
             )
+            return
+
 
         else:
             log.warning(self.hitShift, f'''The {message.chat.id} chat id is trying to get today's shift report. But this method only responds to {BotConfig.CHAT_ID}''')

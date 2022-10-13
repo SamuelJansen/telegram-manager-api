@@ -12,6 +12,9 @@ queue-manager-api:
 shift-manager-api:
     base-url: ${SHIFT_MANAGER_API_HOST}:5095/shift-manager-api
 
+the-news-api:
+    base-url: ${THE_NEWS_API_HOST}:6067/the-news-api
+
 swagger:
     schemes: [${api.server.scheme}] ###- bug
     host: ${SWAGGER_HOST:${api.server.host}}:${api.server.port} ###- bug
