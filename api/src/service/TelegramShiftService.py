@@ -49,10 +49,10 @@ class TelegramShiftService:
             text = StringHelper.join(
                 [
                     f'{SHIFT_DICTIONARY.get(index)}: {data}'
-                    for index, data in [
+                    for index, data in enumerate([
                         responseDto.get('hitAt', 'not informed').split()[-1].split('.')[0]
                         for responseDto in todayShift
-                    ]
+                    ])
                 ],
                 character = f'{c.COMA}{c.NEW_LINE}'
             )
