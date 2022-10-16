@@ -62,7 +62,7 @@ queue-manager-api:
 shift-manager-api:
     base-url: ${SHIFT_MANAGER_API_HOST}/shift-manager-api
     api-key: ${SHIFT_MANAGER_API_API_KEY}
-    timeout: 6
+    timeout: 1
 
 
 the-news-api:
