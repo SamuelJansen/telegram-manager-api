@@ -43,32 +43,32 @@ queue-manager-api:
     api-notifications:
         queue-key: ${API_NOTIFICATIONS_QUEUE_KEY}
         emitter:
-            timeout: 2
+            timeout: (2,1)
         listener:
-            timeout: 2
+            timeout: (2,1)
     send-telegram:
         queue-key: ${SEND_TELEGRAM_QUEUE_KEY}
         emitter:
-            timeout: 2
+            timeout: (2,1)
     hit-shift:
         queue-key: ${HIT_SHIFT_QUEUE_KEY}
         emitter:
-            timeout: 2
+            timeout: (2,1)
     hit-shift-now:
         queue-key: ${HIT_SHIFT_NOW_QUEUE_KEY}
         emitter:
-            timeout: 2
+            timeout: (2,1)
 
 shift-manager-api:
     base-url: ${SHIFT_MANAGER_API_HOST}/shift-manager-api
     api-key: ${SHIFT_MANAGER_API_API_KEY}
-    timeout: 1
+    timeout: (2,5)
 
 
 the-news-api:
     base-url: ${THE_NEWS_API_HOST}/the-news-api
     api-key: ${THE_NEWS_API_API_KEY}
-    timeout: 20
+    timeout: (2,20)
 
 swagger:
     # schemes: [${api.server.scheme}] ###- bug
