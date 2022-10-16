@@ -16,7 +16,7 @@ class BotTheNewsListener:
         ]
     )
     def presentCommands(self, message):
-        self.service.telegramTheNews.presentCommands(message)
+        return self.service.telegramTheNews.presentCommands(message)
 
 
     @ListenerMethod(
@@ -26,4 +26,4 @@ class BotTheNewsListener:
         ]
     )
     def createTodayNews(self, message):
-        self.service.telegramTheNews.createTodayNews(message)
+        return self.service.telegramTheNews.createTodayNews(message)
