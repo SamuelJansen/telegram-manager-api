@@ -12,7 +12,7 @@ class BotShiftListener:
     @ListenerMethod(
         interceptor = TelegramConstant.MESSAGE_HANDLER_INTERCEPTOR,
         commands = [
-            BotShiftComands.WORK_SHIFT
+            BotShiftComands.SHIFT
         ]
     )
     def presentCommands(self, message):

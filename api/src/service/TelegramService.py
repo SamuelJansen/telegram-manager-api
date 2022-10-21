@@ -30,7 +30,7 @@ class TelegramService:
     def updateCommands(self, message):
         self.emitter.bot.aknowledgeByMessage(message)
         self.emitter.bot.updateCommands([
-            BotShiftComands.WORK_SHIFT,
+            BotShiftComands.SHIFT,
             BotTheNewsComands.THE_NEWS,
             BotComands.LIST_COMMANDS
         ])

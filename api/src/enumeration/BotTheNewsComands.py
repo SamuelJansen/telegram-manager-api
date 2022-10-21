@@ -5,7 +5,7 @@ from python_framework import Enum, EnumItem
 class BotTheNewsComandsEnumeration:
     THE_NEWS = EnumItem(
         command = 'the_news',
-        description = 'The news'
+        description = 'The news commands'
     )
     CREATE_TODAY_NEWS = EnumItem(
         command = 'create_today_news',

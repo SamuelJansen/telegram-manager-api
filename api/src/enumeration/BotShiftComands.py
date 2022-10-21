@@ -5,9 +5,9 @@ from enumeration.ShiftMomment import ShiftMomment
 
 @Enum(associateReturnsTo='command')
 class BotShiftComandsEnumeration:
-    WORK_SHIFT = EnumItem(
-        command = 'work_shift',
-        description = 'Work shift'
+    SHIFT = EnumItem(
+        command = 'shift',
+        description = 'Shift commands'
     )
     HIT_SHIFT = EnumItem(
         command = 'hit_shift',
