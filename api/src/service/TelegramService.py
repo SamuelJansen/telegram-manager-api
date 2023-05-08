@@ -16,13 +16,12 @@ class TelegramService:
     def listCommands(self, message):
         if BotConfig.CHAT_ID == message.chat.id:
             self.emitter.bot.optionsByChatId(str(BotConfig.CHAT_ID), 'Tap a command to call it', [
-                f'{c.SLASH}{command}'
+                f'{c.SLASH}{command.lower()}'
                 for command in [
-                    *ReflectionHelper.getAttributeDataDictionary(BotShiftComands).values(),
-                    *ReflectionHelper.getAttributeDataDictionary(BotTheNewsComands).values(),
-                    *ReflectionHelper.getAttributeDataDictionary(BotComands).values()
+                    *BotShiftComands.getItemsAsString(),
+                    *BotTheNewsComands.getItemsAsString(),
+                    *BotComands.getItemsAsString()
                 ]
-                if isinstance(command, str)
             ])
 
 
@@ -40,7 +39,12 @@ class TelegramService:
     def acceptMessages(self, dtoList):
         # self.emitter.bot.aknowledgeByChatId(str(BotConfig.CHAT_ID))
         for dto in dtoList:
-            self.emitter.bot.sendTextByChatId(str(BotConfig.CHAT_ID), dto.get('message'))
+            message = dto.get('message')
+            if message and message.lower().strip().startswith('success from the news api development'):
+                for chatId in BotConfig.TRUSTED_CHAT_ID_LIST:
+                    self.emitter.bot.sendTextByChatId(str(chatId), dto.get('message'))
+            else:
+                self.emitter.bot.sendTextByChatId(str(BotConfig.CHAT_ID), dto.get('message'))
 
 
     @ServiceMethod(requestClass=[Enum, str])

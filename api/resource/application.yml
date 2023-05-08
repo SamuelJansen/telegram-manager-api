@@ -35,7 +35,9 @@ api:
 
 telegram:
     bot-token: ${TELEGRAM_BOT_TOKEN:test}
-    chat-id: ${TELEGRAM_CHAT_ID}
+    chat-id:
+        main: ${TELEGRAM_CHAT_ID}
+        trusted-list: ${TELEGRAM_TRUSTED_CHAT_ID_LIST:[]}
 
 queue-manager-api:
     base-url: ${QUEUE_MANAGER_API_HOST}/queue-manager-api
